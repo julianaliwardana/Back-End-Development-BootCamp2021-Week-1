@@ -25,10 +25,10 @@
                     <td>{{$article->title}}</td>
                     <td>{{$article->content}}</td>
                     <td><img src="{{ asset('upload/photo/' . $article['image']) }}" style="width:300px;"></td>
-                    <td>
-                        <a href="{{url('/view-article') . '/' . $article->id}}" name="next-page" class="btn btn-primary text-white">View</a>
-                        <a href="{{url('/edit-article') . '/' . $article->id}}" name="next-page" class="btn btn-success text-white">Update</a>
-                        <form action="{{url('/delete-article') . '/' . $article->id}}" method="POST" class="d-inline">
+                    <td class="d-flex flex-column align-items-center" style="height: 500px;">
+                        <a href="{{url('/view-article') . '/' . $article->id}}" name="next-page" class="btn btn-primary text-white my-auto">View</a>
+                        <a href="{{url('/edit-article') . '/' . $article->id}}" name="next-page" class="btn btn-success text-white my-auto">Update</a>
+                        <form action="{{url('/delete-article') . '/' . $article->id}}" method="POST" class="d-inline my-auto">
                             @method('delete')
                             @csrf
                             <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>

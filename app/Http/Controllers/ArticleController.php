@@ -20,11 +20,12 @@ class ArticleController extends Controller
     public function store(Request $request) {
         // dd($request->all());
         // echo "Anda sudah masuk";
-        // $request->validate([
-        //     'name' => 'required | max:255',
-        //     'title' => 'required | max:255',
-        //     'content' => 'required | max:255'
-        // ]);
+        $request->validate([
+            'name' => 'required | max:255',
+            'title' => 'required | max:255',
+            'content' => 'required | max:255',
+            'image' => 'required | image | mimes:jpeg,png,jpg,gif'
+        ]);
 
         $article = new Article();
         $article->name = $request->name;
@@ -89,9 +90,21 @@ class ArticleController extends Controller
 
     public function update(Request $request, $id) {
         $article = Article::find($id);
+        $request->validate([
+            'name' => 'required | max:255',
+            'title' => 'required | max:255',
+            'content' => 'required | max:255'
+        ]);
+
         $article->name = $request->name;
         $article->title = $request->title;
         $article->content = $request->content;
+
+        $file = $request->file('image');
+        $extension = $file->extension();
+        $filename = time() . '.' . $extension;
+        $file->move('upload/photo/', $filename);
+        $article->image = $filename;
 
         $article->save();
 
