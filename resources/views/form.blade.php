@@ -40,8 +40,10 @@
                 <button type="submit" name="submit" class="btn btn-primary mb-3 mt-4"
                     onclick="alert('Terima kasih, artikel anda sudah kami save')" class="button">Submit</button>
             </form>
+            <a href="{{ url('/home') }}" name="next-page" class="btn btn-primary text-white mb-5" class="a">Go
+                to Home Page</a>
             <a href="{{ route('list-article') }}" name="next-page" class="btn btn-primary text-white mb-5" class="a">Go
-                to the next Page</a>
+                to the Next Page</a>
         </div>
     </div>
 @endsection

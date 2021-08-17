@@ -17,9 +17,13 @@
                         {{ __('You are logged in!') }}
                     </div>
 
-                    <div class="list-button">
+                    <div class="list-button d-flex flex-column text-center mr-3">
                         <a href="{{ route('form-article') }}" name="form-page"
-                            class="btn btn-primary text-white mb-5 ml-3" class="a">Create New Article</a>
+                            class="btn btn-primary text-white mb-3 ml-3" class="a">Create New Article</a>
+                        <a href="#" name="form-page"
+                            class="btn btn-primary text-white mb-3 ml-3" class="a">Show My Articles</a>
+                        <a href="{{ route('list-article') }}" name="form-page"
+                            class="btn btn-primary text-white mb-3 ml-3" class="a">Show All Articles</a>
                     </div>
                 </div>
             </div>
