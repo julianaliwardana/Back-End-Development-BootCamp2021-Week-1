@@ -7,7 +7,8 @@ use App\Article;
 
 class ArticleController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         return view('form');
     }
 
@@ -17,7 +18,8 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         // dd($request->all());
         // echo "Anda sudah masuk";
         $request->validate([
@@ -38,8 +40,7 @@ class ArticleController extends Controller
             $filename = time() . '.' . $extension;
             $file->move('upload/photo/', $filename);
             $article->image = $filename;
-        } 
-        else {
+        } else {
             return $request;
             $article->image = '';
         }
@@ -51,7 +52,8 @@ class ArticleController extends Controller
         return redirect(url('/form-article'));
     }
 
-    public function show() {
+    public function show()
+    {
         $articles = Article::all();
         return view('article', compact('articles'));
     }
@@ -63,7 +65,8 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function detail($id) {
+    public function detail($id)
+    {
         $viewArticle = Article::find($id);
         return view('detail', compact('viewArticle'));
     }
@@ -75,7 +78,8 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function edit($id) {
+    public function edit($id)
+    {
         $article = Article::find($id);
         return view('edit', compact('article'));
     }
@@ -88,7 +92,8 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         $article = Article::find($id);
         $request->validate([
             'name' => 'required | max:255',
@@ -118,7 +123,8 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function delete($id) {
+    public function delete($id)
+    {
         $article = Article::find($id);
         $article->delete();
         return back();
