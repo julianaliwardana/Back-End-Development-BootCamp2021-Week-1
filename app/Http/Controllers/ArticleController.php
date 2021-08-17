@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\User;
 use App\Article;
 
 class ArticleController extends Controller
@@ -25,7 +27,7 @@ class ArticleController extends Controller
         $request->validate([
             'name' => 'required | max:255',
             'title' => 'required | max:255',
-            'content' => 'required | max:255',
+            'content' => 'required',
             'image' => 'required | image | mimes:jpeg,png,jpg,gif'
         ]);
 
@@ -33,6 +35,7 @@ class ArticleController extends Controller
         $article->name = $request->name;
         $article->title = $request->title;
         $article->content = $request->content;
+        $article->user_id = Auth::id();
 
         if ($request->hasfile('image')) {
             $file = $request->file('image');
@@ -97,7 +100,7 @@ class ArticleController extends Controller
         $article = Article::find($id);
         $request->validate([
             'name' => 'required | max:255',
-            'title' => 'required | max:255',
+            'title' => 'required',
             'content' => 'required | max:255'
         ]);
 

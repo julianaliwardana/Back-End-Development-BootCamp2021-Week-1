@@ -8,4 +8,8 @@ class Article extends Model
 {
     protected $table = 'article';
     // protected $fillable = ['name', 'title', 'content', 'image'];
+    public function users()
+    {
+        return $this->belongsTo('App\User');
+    }
 }
