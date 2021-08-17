@@ -25,6 +25,8 @@ Route::get('/view-article/{id}', 'ArticleController@detail')->name('view-article
 Route::get('/edit-article/{id}', 'ArticleController@edit')->name('edit-article');
 Route::put('/update-article/{id}', 'ArticleController@update')->name('update-article');
 Route::delete('/delete-article/{id}', 'ArticleController@delete')->name('delete-article');
+Route::get('/my-article', 'ArticleController@myArticle')->name('my-article');
+Route::post('/article/{id}', 'CommentController@store')->name('comment-article');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

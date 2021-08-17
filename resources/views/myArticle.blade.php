@@ -14,11 +14,11 @@
             </tr>
             @foreach ($articles as $article)
             <tr class="bg-black text-white">
+                @if (Auth::id() === $article->user_id)
                 <td class="align-middle">{{$article->name}}</td>
                 <td class="align-middle">{{$article->title}}</td>
                 <td class="align-middle">{{$article->content}}</td>
                 <td class="align-middle"><img src="{{ asset('upload/photo/' . $article['image']) }}" style="width:300px;"></td>
-                @if (Auth::user()->name === 'Admin')
                 <td class="d-flex flex-column align-items-center align-middle" style="height: 500px;">
                     <a href="{{url('/view-article') . '/' . $article->id}}" name="next-page" class="btn btn-primary text-white my-auto">View</a>
                     <a href="{{url('/edit-article') . '/' . $article->id}}" name="next-page" class="btn btn-success text-white my-auto">Update</a>
@@ -27,10 +27,6 @@
                         @csrf
                         <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
                     </form>
-                </td>
-                @else
-                <td class=" align-middle">
-                    <a href="{{url('/view-article') . '/' . $article->id}}" name="next-page" class="btn btn-primary text-white my-auto">View</a>
                 </td>
                 @endif
             </tr>

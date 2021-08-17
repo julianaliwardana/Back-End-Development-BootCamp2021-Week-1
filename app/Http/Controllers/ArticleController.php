@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Article;
+use App\Comment;
 
 class ArticleController extends Controller
 {
@@ -61,6 +62,12 @@ class ArticleController extends Controller
         return view('article', compact('articles'));
     }
 
+    public function myArticle()
+    {
+        $articles = Article::with('users')->orderBy('created_at', 'desc')->get();
+        return view('myArticle', compact('articles'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -71,7 +78,9 @@ class ArticleController extends Controller
     public function detail($id)
     {
         $viewArticle = Article::find($id);
-        return view('detail', compact('viewArticle'));
+        $comments = Comment::with('user')->get();
+        // dd($comments);
+        return view('detail', compact('viewArticle', 'comments'));
     }
 
     /**

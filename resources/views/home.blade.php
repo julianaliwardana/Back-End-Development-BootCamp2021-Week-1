@@ -20,7 +20,7 @@
                     <div class="list-button d-flex flex-column text-center mr-3">
                         <a href="{{ route('form-article') }}" name="form-page"
                             class="btn btn-primary text-white mb-3 ml-3" class="a">Create New Article</a>
-                        <a href="#" name="form-page"
+                        <a href="{{ route('my-article') }}" name="form-page"
                             class="btn btn-primary text-white mb-3 ml-3" class="a">Show My Articles</a>
                         <a href="{{ route('list-article') }}" name="form-page"
                             class="btn btn-primary text-white mb-3 ml-3" class="a">Show All Articles</a>
