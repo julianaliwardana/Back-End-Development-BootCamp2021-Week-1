@@ -43,7 +43,7 @@
             <a href="{{ url('/home') }}" name="next-page" class="btn btn-primary text-white mb-5" class="a">Go
                 to Home Page</a>
             <a href="{{ route('list-article') }}" name="next-page" class="btn btn-primary text-white mb-5" class="a">Go
-                to the Next Page</a>
+                to Article Page</a>
         </div>
     </div>
 @endsection

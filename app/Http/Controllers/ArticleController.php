@@ -29,7 +29,7 @@ class ArticleController extends Controller
             'name' => 'required | max:255',
             'title' => 'required | max:255',
             'content' => 'required',
-            'image' => 'required | image | mimes:jpeg,png,jpg,gif'
+            'image' => 'required'
         ]);
 
         $article = new Article();
@@ -38,6 +38,7 @@ class ArticleController extends Controller
         $article->content = $request->content;
         $article->user_id = Auth::id();
 
+        // dd($request->all());
         if ($request->hasfile('image')) {
             $file = $request->file('image');
             $extension = $file->extension();
@@ -50,8 +51,6 @@ class ArticleController extends Controller
         }
 
         $article->save();
-
-        // dd($article->image);
 
         return redirect(url('/form-article'));
     }
