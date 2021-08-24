@@ -21,6 +21,15 @@
                 @if (Auth::user()->name === 'Admin')
                 <td class="d-flex flex-column align-items-center align-middle" style="height: 500px;">
                     <a href="{{url('/view-article') . '/' . $article->id}}" name="next-page" class="btn btn-primary text-white my-auto">View</a>
+                    <form action="{{url('/delete-article') . '/' . $article->id}}" method="POST" class="d-inline my-auto">
+                        @method('delete')
+                        @csrf
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                    </form>
+                </td>
+                @elseif(Auth::user()->name === $article->name)
+                <td class="d-flex flex-column align-items-center align-middle" style="height: 500px;">
+                    <a href="{{url('/view-article') . '/' . $article->id}}" name="next-page" class="btn btn-primary text-white my-auto">View</a>
                     <a href="{{url('/edit-article') . '/' . $article->id}}" name="next-page" class="btn btn-success text-white my-auto">Update</a>
                     <form action="{{url('/delete-article') . '/' . $article->id}}" method="POST" class="d-inline my-auto">
                         @method('delete')
@@ -29,15 +38,16 @@
                     </form>
                 </td>
                 @else
-                <td class=" align-middle">
+                <td class="d-flex flex-column align-items-center align-middle" style="height: 500px;">
                     <a href="{{url('/view-article') . '/' . $article->id}}" name="next-page" class="btn btn-primary text-white my-auto">View</a>
+                    </form>
                 </td>
                 @endif
             </tr>
             @endforeach
         </table>
-        <a href="{{ url('/home') }}" name="next-page" class="btn btn-primary text-white mt-3" style="width: 71%; margin-left: 190px;">Go to Home Page</a>
     </div>
 </div>
+<a href="{{ url('/home') }}" name="next-page" class="btn btn-primary text-white mt-3" style="width: 71%; margin-left: 190px;">Go to Home Page</a>
 @endsection
 

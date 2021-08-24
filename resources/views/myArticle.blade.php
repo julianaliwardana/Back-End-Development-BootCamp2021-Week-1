@@ -2,6 +2,20 @@
 
 @section('content')
 <h1 class="text-center fw-bold" style="margin-top:100px;">List Of Articles</h1>
+@php($count = 0)
+    @foreach ($articles as $article)
+        @if (Auth::id() === $article->user_id)
+            @php($count++)
+        @endif
+    @endforeach
+
+@if ($count === 0)
+    <div class="col-4 m-auto">
+        <div class="card bg-black text-warning p-0 mb-5 border-0 justify-content-center" style="height: 300px">
+            <h5 class="text-center text-warning">You haven't posted any article yet</h5>
+        </div>
+    </div>
+@else
 <div class="container mt-5 d-flex align-items-center justify-content-center">
     <div class="row">
         <table class="table table-striped table-bordered align-middle d-flex align-items-center justify-content-center text-center my-auto " style="width:100%">
@@ -32,8 +46,9 @@
             </tr>
             @endforeach
         </table>
-        <a href="{{ url('/home') }}" name="next-page" class="btn btn-primary text-white mt-3" style="width: 71%; margin-left: 190px;">Go to Home Page</a>
     </div>
 </div>
+@endif
+<a href="{{ url('/home') }}" name="next-page" class="btn btn-primary text-white mt-3" style="width: 71%; margin-left: 190px;">Go to Home Page</a>
 @endsection
 
